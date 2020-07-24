@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'musikji.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test1',
-        'USER': 'postgres',
-        'PASSWORD': 'pic16F877',
+        'NAME': 'musikji_prod',
+        'USER': 'musikji_admin',
+        'PASSWORD': 'mAzen@21$89__04Avriil',
         'HOST': 'localhost',
         'PORT': '5432',
     }
