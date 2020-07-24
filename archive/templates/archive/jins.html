@@ -1,0 +1,23 @@
+{% extends 'archive/base_extended.html'%}
+
+{% block page_content %}
+    <div class="container">
+        {% block innerContent %}
+            General talks about oriental instruments
+            <div class="row w-100 justify-content-md-center" style="margin: auto;">
+                {% for jins in jinss %}
+                    <div class="col">
+                        <div class="card mt-4 mb-3" style="width: 10rem;">
+                            <a href="{% url 'archive:jins_detail' jins.id %}" alt="{{jins.title_eng}}">
+                            <img src="{{ jins.image.url }}" class="card-img-top" alt="" widht="100" height="150">
+                                <div class="card-body">
+                                    <h6 style="color: #e87e14;">{{jins.title_eng}}</h6>
+                                </div>
+                                </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

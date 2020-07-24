@@ -1,0 +1,69 @@
+{% extends 'archive/base_extended.html'%}
+
+{% block page_content %}
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+            <ul class="list-inline" style="margin-left:1rem; height:2rem;">
+                <li class="list-inline-item">
+                    <button class="btn" type="submit" name="upvote"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                    <small>({{score.upvotes}})</small>
+                </li>
+                <li class="list-inline-item">
+                    <button class="btn" type="submit" name="downvote"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                    <small>({{score.downvotes}})</small>
+                </li>
+                <li class="list-inline-item">
+                    <span>
+                        {% with ''|center:score.rate as range %}
+                            {% for _ in range %}
+                                <i class="fa fa-star"></i>
+                            {% endfor %}
+                        {% endwith %}
+                        
+                        {% with ''|center:empty_stars as range %}
+                            {% for _ in range %}
+                                <i class="fa fa-star-o"></i>
+                            {% endfor %}
+                        {% endwith %}
+                    </span>
+                </li>
+                {% if user.profile.role == 'moderator' %}
+                    <li class="list-inline-item">
+                        {% if score.is_active %}
+                            <button class="btn btn-danger" type="submit" name="deactive">Deactivate</button>
+                        {% else %}
+                            <button class="btn btn-success" type="submit" name="active">Activate</button>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            </ul>
+        </form>
+    </div>
+{% if score.note %}<h6>{{ score.note|safe }}</h6>{% endif %}
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <ul>
+                <li> Added to musikji at {{ score.created_at }}</li>
+                <li> last update {{ score.updated_at }}</li>
+                <li> added by <a href={% url 'profile_detail' score.added_by.id %}>{{ score.added_by.username }}</a></li>
+                <li> #downloads {{score.downloads}}</li>
+                {% if is_favorit %} <li> Favored </li> {% endif %}
+            </ul>
+        </small>
+    </div>
+<div class="container">
+    <div class="row">
+         <div class="col-sm-2"><a class="btn btn-primary" href={% url 'archive:score_download' score.id %} role="button">Download</a></div>
+        <div class="col-sm-2">
+            {% if not is_favorit %}
+                <form method='POST'>
+                    {% csrf_token %}
+                    <button class="btn btn-outline-info" type="submit" name='request' value='to_fav'>Like</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

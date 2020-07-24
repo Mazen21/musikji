@@ -1,0 +1,142 @@
+
+Basic:  
+  ✔ Save user media files with different name @done(20-03-29 12:54)
+  ✔ Validate size and store with hash name before uploading @done(20-03-29 16:12)
+  ✔ add and add song link in the song home or navBar page @done(20-03-23 23:40)
+  ✔ from song page, add a song or a lyric @started(20-03-24 13:51) @done(20-03-26 21:53) @lasted(2d8h2m34s)
+  ✔ Propose to add a song when the song search is empty @started(20-03-26 22:04) @done(20-03-27 19:25) @lasted(21h21m47s)
+  ✔ Add type of artist : an artist can be one or many of composer, singer, writer, arranger, player @done(20-03-27 21:27)
+  ✔ add field added by for score/lyrics/songs @done(20-03-29 01:08)
+  ✔ A song can have many artists @started(20-04-05 16:33) @done(20-04-05 16:44) @lasted(11m11s)
+  ✔ Include static files in the archive app @started(20-04-04 12:14) @done(20-04-04 13:04) @lasted(50m47s)
+  ✔ managing scores downloads @started(20-04-04 13:06) @done(20-04-04 18:30) @lasted(5h24m28s)
+  ✔ Add an artist @done(20-03-27 21:26)
+  ✔ Enhance artist type with a multiple choice field @done(20-03-29 01:08)
+  ✔ In list of lyrics and score add user @done(20-03-29 01:09)
+  ✔ Input text field as Html @started(20-03-28 15:23) @done(20-03-28 16:08) @lasted(45m4s)
+  ✔ song date should be only in years @started(20-03-28 16:08) @done(20-03-28 17:26) @lasted(1h18m14s)
+  ✔ Add music genre @done(20-06-28 18:16)
+  ✔ Add moderator role @done(20-06-07 21:25)
+  ✔ display coherent page title @started(20-05-01 00:04) @done(20-06-07 21:25) @lasted(5w2d21h21m10s)
+  ☐ display number of mp to be retrieved or added for each operation
+  ✔ Add page to say there are no articles in this section yet button for adding new article is not functionning @done(20-07-17 15:41)
+  ✔ Ranking for artist, songs, score and lyrics @started(20-05-17 18:20) @done(20-05-17 23:59) @lasted(5h39m2s)
+Profile:
+  ✔ Favorit songs @started(20-04-04 19:42) @done(20-04-05 00:45) @lasted(5h3m24s)
+  ✔ manage profile in navigation bar, add logout in it, inbox, playlists @started(20-04-06 00:15) @done(20-04-06 00:15) @lasted(16s)
+  ✔ instrument @done(20-04-18 14:36)
+  ✔ Add band @started(20-04-18 21:00) @done(20-04-18 21:00) @lasted(3s)
+  ✔ eXPERIENCE @done(20-04-19 18:33)
+  ✔ Add badges @done(20-04-18 15:29)
+  ✔ remove cancel button @done(20-04-20 23:13)
+  ✔ birth date @done(20-04-21 14:06)
+  ✔ contributions @done(20-04-21 14:41)
+  ✔ Musikji Points @started(20-04-21 14:41) @done(20-04-21 14:42) @lasted(1m56s)
+  ✔ change password @started(20-04-20 20:59) @done(20-04-20 21:46) @lasted(47m30s)
+  ✔ Member since ... @done(20-04-19 00:13)
+  ✔ last login @started(20-04-19 00:13) @done(20-04-19 00:13) @lasted(5s)
+  ✔ profile_detail @started(20-04-19 00:12) @done(20-04-19 18:33) @lasted(18h21m17s)
+  ✔ profile edit backend operation and image edit @started(20-04-19 21:15) @done(20-04-19 22:51) @lasted(1h36m35s)
+  ✔ display return message when updated profile @started(20-04-20 22:51) @done(20-04-20 23:06) @lasted(15m46s)
+Social:
+  ✔ boite de reception @done(20-07-16 15:53)
+  ☐ Display user notification messages as pop up 
+  ✔ Comments for songs @started(20-03-29 20:08) @done(20-03-29 23:31) @lasted(3h23m26s)
+  ☐ Comments for artists
+  ☐ manage musikji points
+  ☐ remove points when downloading contributions, inactivity
+  ☐ share content on facebook, twitter
+  ✔ Contribution @done(20-07-16 15:53)
+Front end:
+  ✔ Learning bootstrap @started(20-04-05 18:09) @done(20-04-14 20:35) @lasted(1w2d2h26m32s)
+  ✔ Footer @started(20-04-14 20:58) @done(20-04-14 20:58) @lasted(39s)
+  ✔ contact page @done(20-05-18 00:04)
+  ✔ Thank you page @done(20-05-21 01:24)
+  ✔ Search results from home page @done(20-05-21 01:24)
+  ✔ Logo and Favicon @started(20-04-14 20:35) @done(20-04-14 20:58) @lasted(23m48s)
+  ☐ Add a validator for profile image size and extension
+  ✔ enhance navigation interaction @done(20-05-21 01:24)
+Artist pages:
+  ✔ Artist main page @done(20-04-25 15:49)
+    ✔ add advanced search front end @done(20-04-24 00:25)
+    ✔ Add advanced search back end @done(20-04-25 03:37)
+    ✔ show artists with image and little description @done(20-04-22 16:04)
+    ✔ display results with cards when after alphabeutical indexing or after advanced search @done(20-04-24 00:25)
+    ✔ correct artist type @started(20-04-22 16:12) @done(20-04-22 16:24) @lasted(12m15s)
+    ✔ Add music genre dd contry to artist @done(20-04-24 00:25)
+    ✔ Change artist type with one field (table artist types) @done(20-04-24 00:25)
+    ✔ Add pagination to artists @done(20-04-25 15:48)
+  ✔ Artist detail @done(20-04-25 22:23)
+    ✔ layout @started(20-04-25 17:59) @done(20-04-25 20:27) @lasted(2h28m41s)
+    ✔ table of songs @done(20-04-25 20:27)
+  ✔ Artist add @done(20-04-26 16:26)
+  ✔ keep filters between searches @done(20-04-27 23:39)
+  ✔ change color @done(20-04-28 00:13)
+  ✔ background color navigation is not updated @done(20-04-28 18:54)
+SEO:
+  ☐ Site Map @started(20-07-17 14:21)
+  ☐ meta tags
+  ☐ Community manager
+Home Page:
+  ☐ Song of the day
+  ☐ Latest contributions
+  ☐ Popular song
+  ☐ Buy the image from shuttershock
+  ✔ search artist and songs @done(20-05-09 00:33)
+  ✔ center the search  box @started(20-04-29 00:16) @done(20-04-30 18:55) @lasted(1d18h39m23s)
+song:
+  ✔ add filters (maqam, rythm, origin, genre(samai, lunga, nachid,)) @done(20-04-27 18:36)
+  ✔ display scores and lyrics in a table @done(20-04-05 17:09)
+  ✔ song home layout @done(20-04-27 18:36)
+  ✔ keep filters between searches @started(20-04-27 22:52) @done(20-04-27 22:52) @lasted(52s)
+  ✔ pagination change color @done(20-04-28 18:54)
+  ✔ display artist as thumbnails with tooltips of their names @done(20-04-30 19:19)
+  ✔ change color for advanced search card song and artist @started(20-05-09 00:41) @done(20-05-09 00:59) @lasted(18m48s)
+  ✔ add extended template to song detail @done(20-05-09 14:31)
+  ✔ enhance lyric page @done(20-05-09 14:31)
+  ✔ upload score to private folder @done(20-05-28 01:05)
+  ✔ Youtube/soundcloud/itunes/ video for songs @done(20-07-17 14:21)
+  ✔ musecore link for songs @done(20-07-17 14:21)
+Backoffice:
+  ✔ Ticketting system @done(20-05-23 03:34)
+    ✔ app backoffice @done(20-05-21 01:25)
+    ✔ create table for tickets @done(20-05-21 01:26)
+    ✔ add contact tickets @started(20-05-21 01:27) @done(20-05-21 03:31) @lasted(2h4m20s)
+    ✔ create page Tickets @done(20-05-23 03:34)
+      ✔ only accessible by moderator and admin @done(20-05-23 03:33)
+      ✔ filter tickets with categories, state @done(20-05-23 03:33)
+      ✔ display ticket and update it only if the user is moderator or admin @done(20-05-23 03:33)
+      ✔ ticket manager add and filter @done(20-05-24 03:15)
+  ✔ Add users to manage tickets @started(20-05-19 00:29) @done(20-05-20 00:31) @lasted(1d2m53s)
+  ✔ When a user add musikjistamp it is by default inactive and only visible for him and for moderators, and a ticket (create musikji stamp) is created @started(20-05-25 01:27) @done(20-05-26 12:06) @lasted(1d10h39m44s)
+  ✔ When a moderator add a musikjistamp it active by default @done(20-05-26 12:06)
+  ✔ only a moderator can change active state of a musikji stamp @started(20-05-26 13:24) @done(20-05-26 21:28) @lasted(8h4m23s)
+  ✔ inactive musikjistamp details is only visibal by its user and by moderators @started(20-05-26 22:32) @done(20-05-26 22:32) @lasted(19s)
+  ✔ inactive musikjistamp search results are only visible by moderators @started(20-05-26 22:59) @done(20-05-26 23:13) @lasted(14m11s)
+  ☐ A script to automate uploading songs/artists/scores/lyrics/to database
+  ☐ notification when the anniversary of an artist
+  ✔ Add moderator role @done(20-05-28 01:05)
+Authentication:
+  ☐ Sign in with facebook and google
+  ✔ register with mail validation @done(20-06-13 12:40)
+  ✔ forget password reset @done(20-06-14 21:33)
+Bands:
+  ☐ A user can create a band
+  ☐ A band manager can add other users to the band
+  ☐ A notification is received after a band invitation
+  ☐ band rehersals?
+Security:
+  ☐ include https
+Database:
+  ✔ change postgresql @done(20-06-14 01:09)
+Blog:
+  ☐ Create app
+  ☐ an article has a categorie
+  ☐ comments
+  ☐ could be shared, liked
+  ☐ languages/
+  ☐ A user can submit a blog but need to be approved by Musikji team
+Music Store:
+  ✔ First display only a banner to invite people who want to sell instruments in Musikji @done(20-07-17 14:22)
+  ☐ Instrument maker
+  ☐ catalog by categories: (instruments)

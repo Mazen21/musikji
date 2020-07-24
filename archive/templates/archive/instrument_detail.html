@@ -1,0 +1,7 @@
+{% extends 'archive/base_extended.html'%}
+
+{% block page_content %}
+    <img src="{{instrument.image.url}}" alt="{{ instrument.title_eng }} instrument" width="300" height="400">
+    <p>{{ instrument.description_eng|safe}}<p>
+    {{ instrument.audio|safe}}
+{% endblock %}

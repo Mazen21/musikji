@@ -1,0 +1,73 @@
+{% load archive %}
+{% artists as artists %}
+{% artist_types as artist_t %}
+{% music_genres as genres %}
+{% maqams as maqams %}
+{% rythms as rythms %}
+{% music_forms as music_forms %}
+
+<div class="row">
+    <div class="card mt-4 w-100">
+        <div class="card-body" style="background-color: #f2f2f2 !important;">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col mb-3">
+                        <div class="md-form active-purple active-purple-2 mb-3">
+                            <input class="form-control" type="text" name="song_search" placeholder="Search songs" aria-label="Search" value={{song_search}}>
+                        </div>
+                    </div>
+                    <div class="col mb-3">
+                        <select class="custom-select" name="song_artist">
+                            <option value="" selected disabled hidden >Artist</option>
+                            {% for artist in artists %}
+                                <option value="{{artist.id}}" {% if artist.id == song_artist %} selected="selected" {% endif %}>
+                                {{artist.name_eng}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <select class="custom-select" name="song_maqam">
+                            <option value="" selected disabled hidden>Maqam</option>
+                            {% for maqam in maqams %}
+                                <option value="{{maqam.id}}" {% if maqam.id == song_maqam %} selected="selected" {% endif %}>
+                                {{maqam.title_eng}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <select class="custom-select" name="song_rythm">
+                            <option value="" selected disabled hidden>Rythm</option>
+                            {% for rythm in rythms %}
+                                <option value="{{rythm.id}}" {% if rythm.id == song_rythm %} selected="selected" {% endif %} >
+                                {{rythm.title_eng}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <select class="custom-select" name="song_music_form">
+                            <option value="" selected disabled hidden>Music form</option>
+                            {% for music_form in music_forms %}
+                                <option value="{{music_form.id}}"  {% if music_form.id == song_music_form %} selected="selected" {% endif %}>
+                                {{music_form.title_eng}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-check form-check-inline ml-2">
+                        <input class="form-check-input" type="checkbox" id="with_scores" name="with_scores"  {% if song_with_scores %} checked {% endif %}>
+                        <label class="form-check-label" for="with_scores">With scores</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="with_lyrics" name="with_lyrics"  {% if song_with_lyrics %} checked {% endif %} >
+                        <label class="form-check-label" for="with_lyrics">With lyrics</label>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" type="submit">Search songs</button>
+            </form>
+        </div>
+    </div>
+</div>

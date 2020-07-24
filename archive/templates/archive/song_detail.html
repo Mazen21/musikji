@@ -1,0 +1,172 @@
+{% extends 'archive/base_extended.html'%}
+
+{% block page_content %}
+{% load crispy_forms_tags %}
+    <div class="row">
+        <form method="POST">
+            {% csrf_token %}
+            <ul class="list-inline" style="margin-left:1rem; height:2rem;">
+                <li class="list-inline-item">
+                    <button class="btn" type="submit" name="upvote"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                    <small>({{song.upvotes}})</small>
+                </li>
+                <li class="list-inline-item">
+                    <button class="btn" type="submit" name="downvote"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                    <small>({{song.downvotes}})</small>
+                </li>
+                <li class="list-inline-item">
+                    <span>
+                        {% with ''|center:song.rate as range %}
+                            {% for _ in range %}
+                                <i class="fa fa-star"></i>
+                            {% endfor %}
+                        {% endwith %}
+                        
+                        {% with ''|center:empty_stars as range %}
+                            {% for _ in range %}
+                                <i class="fa fa-star-o"></i>
+                            {% endfor %}
+                        {% endwith %}
+                    </span>
+                </li>
+                {% if user.profile.role == 'moderator' %}
+                    <li class="list-inline-item">
+                        {% if song.is_active %}
+                            <button class="btn btn-danger" type="submit" name="deactive">Deactivate</button>
+                        {% else %}
+                            <button class="btn btn-success" type="submit" name="active">Activate</button>
+                        {% endif %}
+                    </li>
+                {% endif %}
+            </ul>
+        </form>
+    </div>
+        <div class="row musikjilink">
+            <div class="col-sm-12">
+                {{ song.audio|safe }}
+            </div>
+        </div>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <ul>
+                <li> Added to musikji at {{ song.created_at }}</li>
+                <li> last update {{ song.updated_at }}</li>
+                <li> added by <a href={% url 'profile_detail' song.added_by.id %}>{{ song.added_by.username }}</a></li>
+            </ul>
+        </small>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"><h5> Featured artist{{song.artists.all.count|pluralize}}</h5></div>
+            <ul class="list-inline">
+                {% if song.artists.count > 0 %}
+                    {% for artist in song.artists.all %}
+                        <li class="list-inline-item" >
+                            <a href="{% url 'archive:artist_detail' artist.id %}">
+                            <img src="{{ artist.image.url}}" alt="{{ artist.name_eng }}" class="img-thumbnail artist_thumbnail" data-toggle="tooltip" data-placement="top" title="{{ artist.name_eng }}">
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            <ul>
+        </div>
+        {% if song.maqam %}
+        <div class="row">
+            <div class="col-sm-4"><h5> Maqam </h5></div>
+            <div class="col-sm-4 musikjilink"><a href="{% url 'archive:maqam_detail' song.maqam.id %}">{{ song.maqam }}</a></div>
+        </div>
+        {% endif %}
+        {% if song.music_form %}
+        <div class="row">
+            <div class="col-sm-4"><h5> Form </h5></div>
+            <div class="col-sm-4 musikjilink"><a href="{% url 'archive:musicform_detail' song.music_form.id %}">{{ song.music_form }}</a></div>
+        </div>
+        {% endif %}
+        {% if song.date %}
+        <div class="row">
+            <div class="col-sm-4"><h5> Date </h5></div>
+            <div class="col-sm-4">{{ song.date }}</div>
+        </div>
+        {% endif %}
+        </br>
+        <div class="row musikjilink">
+            <div class="col-md-6">
+                <h5> Lyrics : <a href="{% url 'archive:lyric_add' song.id %}" class="btn btn-warning float-right" style="color : black;">Add</a></h5>
+                {% if song.lyric_set.all.count > 0 %}
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+                            <th scope="col">Uploader</th>
+                            <th scope="col">Uploaded on</th>
+                            <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lyric in song.lyric_set.all %}
+                                <tr>
+                                    <td><a href={% url 'profile_detail' song.added_by.id %}>{{lyric.added_by.username}}</a></td>
+                                    <td> {{lyric.created_at}}</td>
+                                    <td><a href="{% url 'archive:lyric_detail' lyric.id %}">Show</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h5> Scores : <a href="{% url 'archive:score_add' song.id %}" class="btn btn-warning float-right" style="color : black;">Add</a></h5>
+                {% if song.score_set.all.count > 0 %}
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+                            <th scope="col">Uploader</th>
+                            <th scope="col">Uploaded on</th>
+                            <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for score in song.score_set.all %}
+                                <tr>
+                                    <td><a href={% url 'profile_detail' score.added_by.id %}>{{score.added_by.username}}</a></td>
+                                    <td> {{score.created_at}}</td>
+                                    <td>
+                                        <a href="{% url 'archive:score_detail' score.id %}">Show</a>
+                                        <a href="{% url 'archive:score_download' score.id %}">Download</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row musikjilink">
+                {{ song.msc|safe }}
+        </div>
+            <div class="row w-100 justify-content-md-center" style="margin: auto;">
+                {{ song.ytb|safe }}
+        </div>
+            <h5>Comments </h5>
+            {% for comment in comments %}
+                <div class="card">
+                    <div class="card-header">
+                        <a href={% url 'profile_detail' comment.added_by.id %}>{{ comment.added_by.username }}</a>
+                    </div>
+                    <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{comment.body|safe}}</p>
+                        <footer class="blockquote-footer">{{ comment.updated_at }}</footer>
+                    </blockquote>
+                    </div>
+                </div>
+            {% endfor %}
+            </br>
+                <div>
+                    <form method='POST'>
+                        {% csrf_token %}
+                        {{comment_form|crispy}}
+                        <button class="btn btn-outline-info" type="submit" name='add_comment'>Add Comment</button>
+                    </form>
+                </div>
+    </div>
+{% endblock %}

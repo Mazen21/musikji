@@ -1,0 +1,15 @@
+{% extends 'archive/song.html'%}
+
+{% block innerContent %}
+{% if songs.count > 0 %}
+    <ul>
+        {% for song in songs %}
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'archive:song_detail' song.id %}">{{ song.name_eng }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+<a href="{% url 'archive:song_add' %}">Be the first to add this song</a>
+{% endif %}
+{% endblock %}

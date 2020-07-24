@@ -1,0 +1,57 @@
+{% extends 'archive/base.html'%}
+
+{% block content %}
+<div class="container contact-form">
+            {% load static %}
+            <div class="row">
+                <div class="col">
+                    <img src={% static "archive/images/contact_us.png" %} alt="phone_contact" style="height:20rem;"/>
+                </div>
+                <div class="col" style="margin-top:1rem;">
+                    <p>
+                        Dear my fellow musicians,</br>
+
+                            This is a website for you by you. it is simply a humble attempt by me to compile all 
+                            the scattered oriental music sheets and lyrics in one place.</br>
+                            My main goal is to bring amators and professional music player together to share their
+                            knowledge and experience in one simple platform that is totally tailored to their needs.</br>
+
+                            I'll constantly update musikji to rise to your expectations and to make your visit
+                            as welcoming as possible.</br>
+
+                            I want to thank everyone that helped in building this project directly or indirectly,
+                            starting with my wife, my parents and my family. I also would like to thank all the
+                            great musician who created the score sheets. You are a blessing to us.</br></br>
+
+                                                                                                Mazen Aounallah
+
+                    </p>
+                </div>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                <h3 style="color: #e87e14 !important;">Drop us a message</h3>
+               <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" name="txtName" class="form-control" placeholder="Your Name *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="txtPhone" class="form-control" placeholder="Your Phone Number" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="btnSubmit" class="btn btn-secondary" value="Send Message" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <textarea name="txtMsg" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+</div>
+{% endblock %}

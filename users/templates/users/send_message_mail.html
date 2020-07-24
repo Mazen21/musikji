@@ -1,0 +1,6 @@
+{% autoescape off %}  
+Hi {{ receiver.username }},  
+You have received a message from {{ sender.username }}
+Check your musikji messages
+http://{{ domain }}{% url 'message_detail' msg_id %}  
+{% endautoescape %}

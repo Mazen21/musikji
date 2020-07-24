@@ -1,0 +1,6 @@
+{% extends 'archive/jins.html' %}
+{% block innerContent %}
+    <img src="{{jins.image.url}}" alt="{{ jins.title_eng }} jins" width="600" height="400">
+    <p>{{ jins.description_eng|safe}}<p>
+    {{ jins.audio|safe }}
+{% endblock %}

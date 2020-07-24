@@ -1,0 +1,292 @@
+{% extends 'archive/base.html'%}
+{% load crispy_forms_tags %}
+{% block content%}
+<div class="container">
+{% comment %} <pre> {% filter force_escape %} {% debug %} {% endfilter %} </pre> {% endcomment %}
+    <div class="row my-2">
+        <div class="col-lg-4 order-lg-1 text-center">
+            <img src="{{ profile.image.url }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+        </div>
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
+                </li>
+                {% if user.profile == profile %}
+                <li class="nav-item">
+                    <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Messages <span class="badge"><strong>( {{unread_messages}} )</strong></span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" data-target="#Settings" data-toggle="tab" class="nav-link">Settings</a>
+                </li>
+                {% endif %}
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <div class="container">
+                        <h2 class="mb-3">
+                        {% if profile.first_name and profile.last_name %}
+                            {{ profile.first_name }} {{profile.last_name}}
+                        {% else %}
+                            {{ profile.user.username }}
+                        {% endif %}
+                        </h2>
+                        <div class="row">
+                        {% if user.profile != profile %}
+                             <div class="col-md-6">
+                                <a href="{% url 'send_message' profile.id %}" class="btn btn-info">Contact me</a>
+                            </div>
+                        {% endif %}
+                         <div class="col-md-6">
+                            <div class="col"><h6>{{profile.about}}</h6></div>
+                            <div class="col">Member since {{user.date_joined}}</div>
+                            <div class="w-100"></div>
+                            <div class="col"><h6>{{profile.country}} {% if profile.city %} ({{profile.city}}) {% endif %}</h6></div>
+                            <div class="col">last login {{user.last_login}}</div>
+                            <div class="w-100"></div>
+                            <div class="col"><h6>{{profile.website}}</h6></div>
+                            <div class="col">{{profile.points}} Musikji points</h6></div>
+                         </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            {% if  profile.experience %}
+                                <div class="col-md-12">
+                                    <h5> Musical career</h5>
+                                    {{profile.experience}}
+                                    <hr>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Instrument</h5>
+                                <p>
+                                    {% if profile.instruments.count > 0 %}
+                                        {% for instr in profile.instruments.all  %}
+                                            <a href="{% url 'archive:instrument_detail' instr.id %}" class="badge badge-dark badge-pill">{{ instr.title_eng }}</a>
+                                        {% endfor %}
+                                    {% else %}
+                                        No instrument added
+                                    {% endif %}
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Badges</h5>
+                                {% for badge in profile.badges.all %}
+                                    <a href="#" class="badge badge-{{ badge.css_class }} badge-pill">{{ badge.title_eng }}</a>
+                                {% endfor %}
+                                <hr>
+                                <h5>Bands</h5>
+                                {% if profile.bands.count > 0 %}
+                                <ul class="list-group ">
+                                {% for band in profile.band_set.all %}
+                                    <li class="list-group-item">{{ band.name_eng}}</li>
+                                {% endfor %}
+                                {% else %}
+                                    <p>This profile is not a member of any band</p>
+                                {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mt-2"><span class="fa fa-star "></span> Favorites</h5>
+                                <table class="table table-sm table-hover table-striped">
+                                    <tbody>      
+                                        {% for score in profile.favorit_scores.all %}                              
+                                            <tr>
+                                                <td><a href="{% url 'archive:score_detail' score.id %}">
+                                                    <strong>{{ score.song.name_eng }}</strong> by <a href={% url 'profile_detail' score.added_by.id %}>{{score.added_by.username}}</a>
+                                                </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mt-2"><span class="fa fa-sticky-note "></span> Contributions</h5>
+                                <table class="table table-sm table-hover table-striped">
+                                    <tbody>      
+                                        {% for lyric in usrLyrics %}                              
+                                            <tr>
+                                                <td><a href="{% url 'archive:lyric_detail' lyric.id %}">
+                                                    <strong>Lyrics of {{ lyric.song.name_eng }}</strong>
+                                                </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                        {% for score in usrScores %}                              
+                                            <tr>
+                                                <td><a href="{% url 'archive:score_detail' score.id %}">
+                                                    <strong>Score of {{ score.song.name_eng }}</strong>
+                                                </a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+                {% if user.profile == profile %}
+                <div class="tab-pane" id="messages">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                                {% for msg in us_messages%}
+                                    <tr>
+                                        <td class="image"><a href="{% url 'profile_detail' msg.sender.id %}">
+                                        <img src={{msg.sender.profile.image.url}} class="img-thumbnail artist_thumbnail" alt="{{msg.sender.profile.user.username}}" title="{{ msg.sender.profile.user.username}}"></a></td>
+                                        <td class="product"><a href="{% url 'message_detail' msg.id %}"><strong>{{msg.sender.profile.user.username}}</strong>
+                                        <small>{{ msg.sent_at }}</small></td>
+                                        <td><strong> {% if not msg.read_at  %} New {% endif %}</strong></td>
+                                        <td><p></br>{{msg.content|truncatechars:20}}</p></a></td>
+                                    </tr>
+                                {% endfor %}                 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="edit">
+                    <form role="form" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Image</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="file" name="loaded_image" placeholder="{{profile.image.url}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" name="username" value="{{profile.user.username}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" name="first_name" value="{{profile.first_name}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" name="last_name" value="{{profile.last_name}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Birthday</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="date" name="birthday" value="{{profile.birthday|date:'Y-m-d'}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="email" name="email" value="{{profile.user.email}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="url" name="website" value="{{profile.website}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">About</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" name="about" value="{{profile.about}}" 
+                                placeholder="Oud player, Violonist, composer/arranger...">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Instruments</label>
+                            <div class="col-lg-9">
+                                <select id="instruments" class="form-control" name="instruments" multiple>
+                                    {% for instrument in instruments %}
+                                    <option value="{{instrument.id}}" {% if instrument in profile.instruments.all %} selected="selected" {%endif%}>
+                                        {{instrument.title_eng}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Experience</label>
+                            <div class="col-lg-9">
+                                <textarea class="form-control" type="text" name="experience" 
+                                placeholder="Describe your detailed musical career">{{profile.experience}}</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">City</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" name="city" value="{{profile.city}}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Country</label>
+                            <div class="col-lg-9">
+                            {% load countries %}
+                                <select id="country" name="country" class="form-control"  >
+                                    {% get_countries as countries %}
+                                    <option value="" selected disabled hidden>Select your country</option>
+                                    {% for country in countries %}
+                                        <option value="{{ country.name }}" {% if country.name == profile.country %}selected="selected"{% endif %}>
+                                        {{ country.name }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <button type="submit" class="btn btn-primary" name="update_profile"value="Save Changes">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane" id="Settings">
+                    <form role="form" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Current password</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="Password" name="old_password">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="Password" name="new_password1">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="Password" name="new_password2">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <button type="submit" class="btn btn-primary" name="update_password" value="Save Changes">Update password</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+  <script>
+    $('.countrypicker').countrypicker();
+  </script>
+{% endblock %}

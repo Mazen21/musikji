@@ -1,0 +1,77 @@
+{% extends 'archive/base.html' %}
+
+{% block content %}
+<!-- Page Content -->
+<div class="container" >
+<div class="row">
+
+<!-- Post Content Column -->
+<div class="col-lg-8">
+    <!-- Title -->
+    <h1 class="mt-4">{{page_title}}</h1>
+{% block page_content %}
+{% endblock %}
+</div>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4">
+{% block side_bar %}
+    <!-- Search Widget -->
+    <form action={% url 'archive:search' %}>
+        <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." name="search_text" value={{search_text}}>
+                <span class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">Go!</button>
+                </span>
+            </div>
+            </div>
+        </div>
+    </form>
+    <!-- Categories Widget -->
+    <div class="card my-4">
+        {% load archive %}
+        {% ft_artists as ft_artistss %}
+        <h5 class="card-header">Featured Artists</h5>
+        <div class="card-body">
+            <div class="row">
+                {% for ft_art in ft_artistss %}
+                    <div class="col">
+                    <a href="{% url 'archive:artist_detail' ft_art.id %}"><span class="badge" >{{ft_art.name_eng}}</span></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="card my-4">
+        {% load archive %}
+        {% ft_songs as ft_songss %}
+        <h5 class="card-header">Featured Songs</h5>
+        <div class="card-body">
+            <div class="row">
+                {% for ft_song in ft_songss %}
+                    <div class="col">
+                    <a href="{% url 'archive:artist_detail' ft_song.id %}"><span class="badge" >{{ft_song.name_eng}}</span></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- ADS -->
+    <div class="card my-4">
+        <h5 class="card-header">Are you a music shop</h5>
+        <div class="card-body">
+            Contact us to share your products with the community
+            <a class="nav-link" href="{% url 'archive:contact' %}">Click here</a>
+        </div>
+    </div>
+{% endblock %}
+<!-- </div> end sidebar -->
+
+</div>
+</div>
+</div>
+{% endblock %}

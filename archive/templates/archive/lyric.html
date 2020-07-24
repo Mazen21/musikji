@@ -1,0 +1,17 @@
+{% extends 'archive/base.html'%}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffe6cc;">
+        <a class="navbar-brand" href="{% url 'archive:lyric_home' %}">Lyrics</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block innerContent %}
+            lyrics and related information
+        {% endblock %}
+    </div>
+{% endblock %}

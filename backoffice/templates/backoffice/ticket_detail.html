@@ -1,0 +1,60 @@
+{% extends 'archive/base_extended.html'%}
+
+{% block page_content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'backoffice:home' %}">backoffice</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'backoffice:tickets' %}">Ticket</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ticket.tag}}</li>
+    </ol>
+</nav>
+<h2>{{ ticket.tag }}</h2>
+<div class="container">
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <ul>
+                <li> Added to musikji at {{ ticket.created_at }}</li>
+                <li> last update {{ ticket.updated_at }}</li>
+            </ul>
+        </small>
+    </div>
+    <div class='row'>
+        <form method="POST">
+            {% csrf_token %}
+            <select class="custom-select" name="tk_status">
+                <option value="" selected disabled hidden>Status</option>
+                {% for st in status %}
+                    <option value="{{st}}">
+                        {{st}}
+                    </option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-secondary float-right" type="submit">Update ticket </button>
+        </form>
+    </div>
+    <ul class='list-group'>
+        <li class='list-group-item'>
+            <h5> Added by <a href={% url 'profile_detail' ticket.usr_creator.id %}>{{ ticket.usr_creator.username }}</a></h5>
+        </li>
+        {% if ticket.usr_manager %}
+            <li class='list-group-item'>
+                <h5> followed by <a href={% url 'profile_detail' ticket.usr_manager.id %}>{{ ticket.usr_manager.username }}</a></h5>
+            </li>
+        {% endif %}
+        <li class='list-group-item'>
+            <h5 class="card-title">Status : {{ticket.state}}</h5>
+        </li>
+        {% if ticket.link %}
+            <li class='list-group-item'>
+                <h5 class="card-title">Link : {{ticket.link|safe}}</h5>
+            </li>
+        {% endif %}
+    </ul>
+    <div class="card text-center">
+        <div class="card-body">
+            <p class="card-text">{{ ticket.message|safe}}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

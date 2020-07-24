@@ -1,0 +1,25 @@
+{% extends 'archive/base.html'%}
+
+{% block content %}
+  <div class="main">
+    <div class="container">
+      <div class="row w-auto align-content-center">
+      <h1 style=font-size:3rem>The platform for oriental music sheets and lyrics</h1>
+      </div>
+      <div class="row">
+      <div class="search-group">
+        <form action="{% url 'archive:search' %}">
+          <div class="input-group w-100 align-content-center ">
+            <input type="text" class="form-control search-bar" placeholder="Search in Musikji" name="search_text">
+            <div class="input-group-append">
+              <button class="btn btn-secondary search-icon" type="sumbit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

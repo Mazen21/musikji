@@ -1,0 +1,26 @@
+{% extends 'archive/base.html'%}
+{% block content %}
+    <div class="container" style="margin: auto;">
+        {% block innerContent %}
+            {% include 'archive/artist_advanced_search.html'%}
+            <div class="row w-100 justify-content-md-center" style="margin: auto;">
+                {% for artist in page_obj %}
+                    <div class="col">
+                        <div class="card mt-4 mb-3" style="width: 10rem;">
+                            <a href="{% url 'archive:artist_detail' artist.id %}" alt="{{artist.name_eng}}">
+                                <img src="{{artist.image.url}}" class="card-img-top" alt="{{artist.name_eng}}" widht="100" height="150">
+                                    <div class="card-body">
+                                        <h6 style="color: #e87e14;">{{artist.name_eng}}</h6>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row w-100 justify-content-md-center" style="margin: auto; ">
+                {% include 'archive/paginator.html' %}
+            </div>
+        {% endblock %}
+        </div>
+    </div>
+{% endblock %}

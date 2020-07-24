@@ -1,0 +1,7 @@
+{% extends 'archive/rythm.html' %}
+{% block innerContent %}
+    <h1 class="display-2">{{ instrument.title_eng }}</h1>
+    <img src="{{rythm.image.url}}" alt="{{ rythm.title_eng }} rythm" width="600" height="400">
+    <p>{{ rythm.description_eng|safe}}<p>
+    {{ rythm.audio|safe}}
+{% endblock %}

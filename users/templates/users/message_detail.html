@@ -1,0 +1,18 @@
+{% extends 'archive/base_extended.html'%}
+{% load crispy_forms_tags %}
+{% block page_content %}
+    <div class="container">
+        <div class="card my-4">
+            <h5 class="card-header">Message from <a href="{% url 'profile_detail' msg.sender.id %}"> {{msg.sender}} </a></h5>
+            <div class="card-body">
+                <div class="row">
+                    {{msg.content}}
+                </div>
+                </br>
+                <p>
+                <small>{{msg.sent_at}}</small>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

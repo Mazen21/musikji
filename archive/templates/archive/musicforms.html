@@ -1,0 +1,23 @@
+{% extends 'archive/base_extended.html'%}
+
+{% block page_content %}
+    <div class="container">
+        {% block innerContent %}
+            General talks about oriental music forms
+            <div class="row w-100 justify-content-md-center" style="margin: auto;">
+                {% for mscform in musicforms %}
+                    <div class="col">
+                        <div class="card mt-4 mb-3" style="width: 10rem;">
+                            <a href="{% url 'archive:musicform_detail' mscform.id %}" alt="{{mscform.title_eng}}">
+                            <img src="{{ mscform.image.url }}" class="card-img-top" alt="" widht="100" height="150">
+                                <div class="card-body">
+                                    <h6 style="color: #e87e14;">{{mscform.title_eng}}</h6>
+                                </div>
+                                </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

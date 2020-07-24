@@ -1,0 +1,50 @@
+{% load backoffice %}
+{% moderators as moderators %}
+
+<div class="row">
+    <div class="card mt-4 w-100">
+    <div class="card-body" style="background-color: #f2f2f2 !important;">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <select class="custom-select" name="Tag">
+                        <option value="" selected disabled hidden>Tag</option>
+                        {% for tag in tags %}
+                            <option value="{{tag}}">
+                                {{tag}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <select class="custom-select" name="Status">
+                        <option value="" selected disabled hidden >Status </option>
+                        {% for st in status %}
+                            <option value="{{ st }}" >
+                                {{ st}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <select class="custom-select" name="Moderator">
+                        <option value="" selected disabled hidden >Moderator </option>
+                        {% for md in moderators %}
+                            <option value="{{ md.user.id }}" >
+                                {{ md.user.username}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class='form_row'>
+                <div class="form-check form-check-inline ml-2">
+                    <input class="form-check-input" type="checkbox" id="not_managed" name="not_managed" >
+                    <label class="form-check-label" for="not_managed">Not managed</label>
+                </div>
+            </div>
+            <button class="btn btn-secondary float-right" type="submit">Search tickets</button>
+        </form>
+    </div>
+</div>

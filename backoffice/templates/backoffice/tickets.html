@@ -1,0 +1,54 @@
+{% extends 'archive/base.html'%}
+{% block content %}
+    <div class="container" style="margin: auto;">
+        {% block innerContent %}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'backoffice:home' %}">backoffice</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tickets</li>
+                </ol>
+            </nav>
+            {% include 'backoffice/tickets_search.html'%}
+            <div class="row w-100 justify-content-md-center" style="margin: auto;">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Ticket id</th>
+                                <th scope="col">Created by</th>
+                                <th scope="col">Managed by</th>
+                                <th scope="col">Tag</th>
+                                <th scope="col">State</th>
+                                <th scope="col">Created at</th>
+                                <th scope="col">Updated at</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tk in page_obj %}
+                                <tr>
+                                    <th scope="row"><a href="{% url 'backoffice:ticket_detail' tk.id %}">{{ tk}}</a></th>
+                                    <td><a href="{% url 'profile_detail' tk.usr_creator.id %}">{{ tk.usr_creator.username}}</a></td>
+                                    <td>
+                                        {% if tk.usr_manager %}
+                                            <a href="{% url 'profile_detail' tk.usr_manager.id %}">{{ tk.usr_manager.username}}</a>
+                                        {% else  %}
+                                            <h6>No manager</h6>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{tk.tag}}</td>
+                                    <td>{{tk.state}}</td>
+                                    <td>{{tk.created_at}}</td>
+                                    <td>{{tk.updated_at}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row w-100 justify-content-md-center" style="margin: auto; ">
+                {% include 'archive/paginator.html' %}
+            </div>
+        {% endblock %}
+        </div>
+    </div>
+{% endblock %}

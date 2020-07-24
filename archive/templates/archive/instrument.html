@@ -1,0 +1,29 @@
+{% extends 'archive/base_extended.html'%}
+
+{% block page_content %}
+    <div class="container">
+        {% block innerContent %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'archive:wiki_home' %}">Wiki</a></li>
+                <li class="breadcrumb-item active" aria-current="page">instruments</li>
+            </ol>
+        </nav>
+            General talks about oriental instruments
+            <div class="row w-100 justify-content-md-center" style="margin: auto;">
+                {% for instr in instruments %}
+                    <div class="col">
+                        <div class="card mt-4 mb-3" style="width: 10rem;">
+                            <a href="{% url 'archive:instrument_detail' instr.id %}" alt="{{instr.title_eng}}">
+                            <img src="{{ instr.image.url }}" class="card-img-top" alt="" widht="100" height="150">
+                                <div class="card-body">
+                                    <h6 style="color: #e87e14;">{{instr.title_eng}}</h6>
+                                </div>
+                                </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

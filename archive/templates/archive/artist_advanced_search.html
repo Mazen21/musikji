@@ -1,0 +1,63 @@
+{% load archive %}
+{% artistsdict as artist_l %}
+{% artist_types as artist_t %}
+{% music_genres as genres %}
+{% load countries %}
+{% get_countries as countries %}
+
+<div class="row">
+    <div class="card mt-4 w-100">
+        <div class="card-header  text-center">
+            <a href="{% url 'archive:artist_home' %}" type="button" class="btn btn-secondary">
+                All <span class="badge badge-light"></span>
+            </a>
+            {% for key in artist_l.keys %}
+                <a href="{% url 'archive:artist_fl' key %}" type="button" class="btn btn-secondary">
+                    {{key}} <span class="badge badge-light"></span>
+                </a>
+            {% endfor %}
+        </div>
+    <div class="card-body" style="background-color: #f2f2f2 !important;">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col mb-3">
+                    <div class="md-form active-purple active-purple-2 mb-3">
+                        <input class="form-control" type="text" name="search" placeholder="Search artists" aria-label="Search" value="{{artist_search}}">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <select class="custom-select" name="artist_type">
+                        <option value="" selected disabled hidden>Type</option>
+                        {% for artist_type in artist_t %}
+                            <option value="{{artist_type.id}}" {% if artist_type.id == artist_artist_type %} selected="selected" {% endif %}>
+                            {{artist_type.title_eng}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <select class="custom-select" name="country">
+                        <option value="" selected disabled hidden >Country </option>
+                        {% for country in countries %}
+                            <option value="{{ country.code }}" {% if country.code == artist_country %} selected="selected" {% endif %}>
+                            {{ country.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <select class="custom-select" name="music_genre">
+                        <option value="" selected disabled hidden >Music genre</option>
+                        {% for genre in genres %}
+                            <option value="{{genre.id}}" {% if genre.id == artist_music_genre %} selected="selected" {% endif %}>
+                            {{genre.title_eng}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-secondary float-right" type="submit">Search artists</button>
+        </form>
+    </div>
+</div>

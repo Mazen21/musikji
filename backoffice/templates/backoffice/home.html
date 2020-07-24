@@ -1,0 +1,25 @@
+{% extends 'archive/base.html'%}
+{% load static %}
+{% block content %}
+    <div class="container" style="margin: auto;">
+        {% block innerContent %}
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Backoffice</li>
+                </ol>
+            </nav>
+            <div class="row w-100 justify-content-md-center" style="margin: auto;">
+                <div class="col">
+                    <div class="card mt-4 mb-3" style="width: 15rem;">
+                        <a href="{% url 'backoffice:tickets' %}" alt="tckets backoffice">
+                        <img src="{% static 'archive\images\wiki\instruments.jpg' %}" class="card-img-top" alt="" widht="100" height="150">
+                            <div class="card-body">
+                                <h6 style="color: #e87e14;">Tickets</h6>
+                            </div>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

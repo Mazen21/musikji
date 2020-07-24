@@ -1,0 +1,6 @@
+{% extends 'archive/maqam.html' %}
+{% block innerContent %}
+    <img src="{{maqam.image.url}}" alt="{{ maqam.title_eng }} maqam" width="600" height="400">
+    <p>{{ maqam.description_eng|safe}}<p>
+    {{ maqam.audio|safe}}
+{% endblock %}
