@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hl*n_c5lmwd7@3!)j2%yv70eh%=zea09i+3%mod$d&hz_n^xji'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['161.35.75.55','muzikji.com',]
 
 
 # Application definition
@@ -81,17 +81,28 @@ WSGI_APPLICATION = 'musikji.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'musikji_prod',
-        'USER': 'musikji_admin',
-        'PASSWORD': 'mAzen@21$89__04Avriil',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+if DEBUG == True:
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.postgresql_psycopg2',
+			'NAME': 'test1',
+			'USER': 'postgres',
+			'PASSWORD': 'pic16F877',
+			'HOST': 'localhost',
+			'PORT': '5432',
+		}
+	}
+else:
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.postgresql_psycopg2',
+			'NAME': 'prod',
+			'USER': 'u_prod',
+			'PASSWORD': '123',
+			'HOST': 'localhost',
+			'PORT': '5432',
+		}
+	}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
