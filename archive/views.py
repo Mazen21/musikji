@@ -615,6 +615,7 @@ def archive_search(request):
     search_text = request.GET.get('search_text','')
     artists = []
     songs = []
+    users = []
     if search_text != '':
         artists = Artist.objects.filter(name_eng__icontains=search_text)
         songs = Song.objects.filter(name_eng__icontains=search_text)

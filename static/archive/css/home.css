@@ -823,6 +823,7 @@ html {
   /* Styles for wrapping the search box */
 
 .main {
+  background-color : white !important;
   min-height: 100vh;
   display: -ms-flexbox;
   display: flex;
