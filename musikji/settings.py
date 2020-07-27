@@ -25,7 +25,7 @@ SECRET_KEY = 'hl*n_c5lmwd7@3!)j2%yv70eh%=zea09i+3%mod$d&hz_n^xji'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['161.35.75.55','muzikji.com',]
+ALLOWED_HOSTS = ['161.35.75.55','muzikji.com','localhost','127.0.0.1',]
 
 
 # Application definition
