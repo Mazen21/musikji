@@ -25,6 +25,4 @@ urlpatterns = [
     path('message_detail/<int:msg_id>', user_views.message_detail, name="message_detail"),
     path('summernote/', include('django_summernote.urls')),
 ]
-
-if settings.DEBUG == True:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

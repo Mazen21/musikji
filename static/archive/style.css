@@ -1,0 +1,126 @@
+.musikjilink a {
+    color: #e87e14;
+}
+
+.musikjilink a:active
+{
+    color: white;
+    border: solid 1px #e87e14 !Important;
+}
+.musikjilink a:hover
+{
+    color: #e87e14 !important;
+    text-decoration: underline;
+} 
+table a {
+    color: #e87e14;
+}
+
+table a:active
+{
+    color: white;
+    border: solid 1px #e87e14 !Important;
+}
+table a:hover
+{
+    color: #e87e14 !important;
+    text-decoration: underline;
+} 
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #e87e14;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > li > a:active
+{
+    color: white;
+    background-color: #e87e14 !Important;
+    border: solid 1px #e87e14 !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #e87e14 !Important;
+    border: solid 1px #e87e14;
+}
+
+.page-link
+{
+    color: #e87e14;
+    background-color: #eee;
+    border-color: #ddd;
+    border: solid 1px #e87e14 !Important;
+}
+
+/* search home results */
+
+
+body{margin-top:20px;
+    background:#eee;
+    }
+    
+    .btn {
+        margin-bottom: 5px;
+    }
+    
+    .grid {
+        position: relative;
+        width: 100%;
+        background: #fff;
+        color: #666666;
+        border-radius: 2px;
+        margin-bottom: 25px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .grid .grid-body {
+        padding: 15px 20px 15px 20px;
+        font-size: 0.9em;
+        line-height: 1.9em;
+    }
+    
+    .search table tr td.rate {
+        color: #f39c12;
+        line-height: 50px;
+    }
+    
+    .search table tr:hover {
+        cursor: pointer;
+    }
+    
+    .search table tr td.image {
+        width: 50px;
+    }
+    
+    .search table tr td img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .search table tr td.rate {
+        color: #f39c12;
+        line-height: 50px;
+    }
+    
+    .search table tr td.price {
+        font-size: 1.5em;
+        line-height: 50px;
+    }
+    
+    .search #price1,
+    .search #price2 {
+        display: inline;
+        font-weight: 600;
+    }

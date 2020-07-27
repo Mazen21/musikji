@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hl*n_c5lmwd7@3!)j2%yv70eh%=zea09i+3%mod$d&hz_n^xji'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['161.35.75.55','muzikji.com',]
 
 
 # Application definition
@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'musikji.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'musikji_prod',
-        'USER': 'musikji_admin',
-        'PASSWORD': 'mAzen@21$89__04Avriil',
+        'NAME': 'prod',
+        'USER': 'u_prod',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -173,8 +173,8 @@ DEFAULT_FROM_EMAIL = "Mazen from musikji.tn"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
 MAILER_EMAIL_BACKEND = EMAIL_BACKEND  
 EMAIL_HOST = 'smtp.gmail.com'  
-EMAIL_HOST_PASSWORD = 'DSE_Power2'  
+EMAIL_HOST_PASSWORD = 'mAzen@21$89__04Avriil'
 EMAIL_HOST_USER = 'slachist@gmail.com'
 EMAIL_PORT = 465  
 EMAIL_USE_SSL = True  
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = 'Mazen from muzikji'

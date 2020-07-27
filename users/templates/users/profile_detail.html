@@ -37,7 +37,7 @@
                         <div class="row">
                         {% if user.profile != profile %}
                              <div class="col-md-6">
-                                <a href="{% url 'send_message' profile.id %}" class="btn btn-info">Contact me</a>
+                                <a href="{% url 'send_message' profile.user.id %}" class="btn btn-info">Contact me</a>
                             </div>
                         {% endif %}
                          <div class="col-md-6">
