@@ -44,7 +44,7 @@
                             <div class="col"><h6>{{profile.about}}</h6></div>
                             <div class="col">Member since {{user.date_joined}}</div>
                             <div class="w-100"></div>
-                            <div class="col"><h6>{{profile.country}} {% if profile.city %} ({{profile.city}}) {% endif %}</h6></div>
+                            <div class="col"><h6>{{profile.country.name}} {% if profile.city %} ({{profile.city}}) {% endif %}</h6></div>
                             <div class="col">last login {{user.last_login}}</div>
                             <div class="w-100"></div>
                             <div class="col"><h6>{{profile.website}}</h6></div>
@@ -237,7 +237,7 @@
                                     {% get_countries as countries %}
                                     <option value="" selected disabled hidden>Select your country</option>
                                     {% for country in countries %}
-                                        <option value="{{ country.name }}" {% if country.name == profile.country %}selected="selected"{% endif %}>
+                                        <option value="{{ country.code }}" {% if country.name == profile.country %}selected="selected"{% endif %}>
                                         {{ country.name }}
                                         </option>
                                     {% endfor %}
