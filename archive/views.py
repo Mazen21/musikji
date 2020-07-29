@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.paginator import Paginator
 from backoffice.models import *
+from itertools import chain
 
 def _update_song_active_state(song,state):
     for score in song.score_set.all():
@@ -209,6 +210,21 @@ def artist_home(request):
         'page_obj': page_obj,
     }
     return render(request,'archive/artists.html', context)
+
+@login_required
+def artist_edit(request, artist_id): 
+    artist = get_object_or_404(Artist, pk=artist_id)
+    form = ArtistForm(request.POST or None, instance=artist)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('archive:artist_detail', artist_id=artist.id)
+    context = {
+        'form':form,
+        'page_title':"Edit artist",
+        'page_webtitle':"Edit artist",
+    }
+    return render(request,'archive/artist_edit.html', context)
 
 def artist_detail(request,artist_id):
     artist = get_object_or_404(Artist,pk=artist_id)
@@ -631,8 +647,12 @@ def archive_search(request):
     songs = []
     users = []
     if search_text != '':
-        artists = Artist.objects.filter(name_eng__icontains=search_text)
-        songs = Song.objects.filter(name_eng__icontains=search_text)
+        artists_eng = Artist.objects.filter(name_eng__icontains=search_text)
+        artists_orig = Artist.objects.filter(name_orig__icontains=search_text)
+        artists = list(chain(artists_eng, artists_orig))
+        songs_eng = Song.objects.filter(name_eng__icontains=search_text)
+        songs_orig = Song.objects.filter(name_orig__icontains=search_text)
+        songs = list(chain(songs_eng, songs_orig))
         users = User.objects.filter(username__icontains=search_text)
     context = {
         'page_webtitle':"Search results",

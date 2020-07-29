@@ -22,7 +22,7 @@
                 {% for artist in artists_results%}
                     <tr>
                       <td class="image"><a href="{% url 'archive:artist_detail' artist.id %}"><img src={{artist.image.url}} alt=""></a></td>
-                      <td class="product"><a href="{% url 'archive:artist_detail' artist.id %}"><strong>{{artist.name_eng}}</strong><br>{{artist.description|truncatechars:20}}</a></td>
+                      <td class="product"><a href="{% url 'archive:artist_detail' artist.id %}"><strong>{{artist.name_eng}}  {{artist.name_orig}}</strong><br>{{artist.description|truncatechars:20}}</a></td>
                     </tr>
                 {% endfor %}
                 {% for song in songs_results%}

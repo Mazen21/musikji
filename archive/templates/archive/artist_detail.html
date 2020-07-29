@@ -37,8 +37,11 @@
                         {% endif %}
                     </li>
                 {% endif %}
-            </ul>
         </form>
+        <li class="list-inline-item">
+            <a class="btn btn-secondary" href="{% url 'archive:artist_edit' artist.id %}">Edit</a>
+        </li>
+        </ul>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -47,9 +50,10 @@
                 <ul class="list-group list-group-flush">
                   {% if artist.artist_type %}<li class="list-group-item">
                     {% for art_type in artist.artist_type.all %}
-                        {{ art_type }} ,
+                        {{ art_type }}</br>
                     {% endfor %}
                   </li> {% endif %}
+                  {% if artist.name_orig %}<li class="list-group-item">{{ artist.name_orig }}</li> {% endif %}
                   {% if artist.birth %}<li class="list-group-item">{{ artist.birth }}</li> {% endif %}
                   {% if artist.death %}<li class="list-group-item">{{ artist.death }}</li> {% endif %}
                   {% if artist.country %}<li class="list-group-item">{{ artist.country.name }}</li> {% endif %}
@@ -79,7 +83,7 @@
                         <tbody>
                             {% for song in songs %}
                                 <tr>
-                                    <th scope="row"><a href="{% url 'archive:song_detail' song.id %}">{{ song.name_eng}}</a></th>
+                                    <th scope="row"><a href="{% url 'archive:song_detail' song.id %}">{{ song.name_eng}}  {{ song.name_orig }}</a></th>
                                     {% if song.maqam %}<td><a href="{% url 'archive:maqam_detail' song.maqam.id %}">{{song.maqam.title_eng}}</a></td>
                                     {% else %}<td></td>{% endif %}
                                     {% if song.rythm %}<td><a href="{% url 'archive:rythm_detail' song.rythm.id %}">{{song.rythm.title_eng}}</a></td>

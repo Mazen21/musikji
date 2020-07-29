@@ -24,13 +24,14 @@ class ArtistForm(forms.ModelForm):
         model = Artist
         labels = {
             "name_eng": "Name",
+            "name_orig":"Name in original language",
             "birth": "Date of birth",
             "death": "Date of death",
             "description_eng": "Description",
             "artist_type":"Type",
             "music_genre":"Music genre",
         }
-        fields = ['image','name_eng','artist_type','music_genre','country','birth','death','description_eng']
+        fields = ['image','name_eng','name_orig','artist_type','music_genre','country','birth','death','description_eng']
         widgets = {
         'birth': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
         'death': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'placeholder':'Select a date', 'type':'date'}),
@@ -43,13 +44,14 @@ class SongForm(forms.ModelForm):
         model = Song
         labels = {
             "name_eng":"Name",
+            "name_orig":"Name in original language",
             "artists":"Featured Artists",
             "maqam":"Maqam",
             "rythm":"Rythm",
             "music_form":"Music Form",
             "date":"Date",
         }
-        fields = ['name_eng','artists','maqam','rythm','music_form','date']
+        fields = ['name_eng','name_orig','artists','maqam','rythm','music_form','date']
 
 class CommentForm(forms.ModelForm):
     

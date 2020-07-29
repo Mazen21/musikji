@@ -26,6 +26,7 @@ urlpatterns = [
     path('artist/add/', views.artist_add, name="artist_add"),
     path('artist/<int:artist_id>/', views.artist_detail, name="artist_detail"),
     path('artist/<str:key_l>/', views.artist_fl, name="artist_fl"),
+    path('artist/edit/<int:artist_id>/', views.artist_edit, name="artist_edit"),
 
     path('song/', views.song_home, name="song_home"),
     path('song/<int:song_id>/', views.song_detail, name="song_detail"),

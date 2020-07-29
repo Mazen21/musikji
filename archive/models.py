@@ -44,6 +44,7 @@ class Vote(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE, blank=True, null=True)
 
 class MusikjiStamp(models.Model):
+    name_orig = models.CharField(max_length=100,default='',blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     added_by = models.ForeignKey(User,on_delete=models.SET_NULL, blank=True, null=True)
