@@ -353,6 +353,21 @@ def song_home(request):
     }
     return render(request, 'archive/song.html',context)
 
+@login_required
+def song_edit(request, song_id): 
+    song = get_object_or_404(Song, pk=song_id)
+    form = SongForm(request.POST or None, instance=song)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('archive:song_detail', song_id=song.id)
+    context = {
+        'form':form,
+        'page_title':"Edit song",
+        'page_webtitle':"Edit song",
+    }
+    return render(request,'archive/song_edit.html', context)
+
 def song_detail(request, song_id):
     context = {}
     song = get_object_or_404(Song, pk=song_id)
@@ -430,7 +445,6 @@ def song_add(request):
         'page_webtitle':"Add song",
     }
     return render(request,'archive/song_add.html', context)
-
 
 def lyric_home(request):
     context={

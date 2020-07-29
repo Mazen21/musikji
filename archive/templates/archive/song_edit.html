@@ -1,0 +1,9 @@
+{% extends 'archive/base_extended.html'%}
+{% load crispy_forms_tags %}
+{% block page_content %}
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-outline-info" type="submit">Update</button>
+    </form>
+{% endblock %}

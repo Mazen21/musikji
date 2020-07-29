@@ -31,6 +31,7 @@ urlpatterns = [
     path('song/<int:song_id>/', views.song_detail, name="song_detail"),
     path('song/search/', views.song_search, name="song_search"),
     path('song/add/', views.song_add, name="song_add"),
+    path('song/edit/<int:song_id>/', views.song_edit, name="song_edit"),
 
     path('lyrics/', views.lyric_home, name="lyric_home"),
     path('lyrics/<int:lyric_id>/', views.lyric_detail, name="lyric_detail"),

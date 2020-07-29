@@ -38,8 +38,12 @@
                         {% endif %}
                     </li>
                 {% endif %}
-            </ul>
+
         </form>
+        <li class="list-inline-item">
+            <a class="btn btn-secondary" href="{% url 'archive:song_edit' song.id %}">Edit</a>
+        </li>
+        </ul>
     </div>
         <div class="row musikjilink">
             <div class="col-sm-12">
