@@ -9,26 +9,19 @@
                         <thead>
                             <tr>
                                 <th scope="col">Song Name</th>
-                                <th scope="col">Main maqam</th>
-                                <th scope="col">Main rythm</th>
-                                <th scope="col">Music form</th>
                                 <th scope="col">Artists</th>
+                                <th scope="col">Added by</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for song in page_obj %}
                                 <tr>
                                     <th scope="row"><a href="{% url 'archive:song_detail' song.id %}">{{ song.name_eng}}</a></th>
-                                    {% if song.maqam %}<td><a href="{% url 'archive:maqam_detail' song.maqam.id %}">{{song.maqam.title_eng}}</a></td>
-                                    {% else %}<td></td>{% endif %}
-                                    {% if song.rythm %}<td><a href="{% url 'archive:rythm_detail' song.rythm.id %}">{{song.rythm.title_eng}}</a></td>
-                                    {% else %}<td></td>{% endif %}
-                                    {% if song.music_form %}<td><a href="{% url 'archive:musicform_detail' song.music_form.id %}">{{song.music_form.title_eng}}</a></td>
-                                    {% else %}<td></td>{% endif %}
                                     <td>{% for art in song.artists.all %}
                                             <a href="{% url 'archive:artist_detail' art.id %}">{{art.name_eng}}</a>
                                         {% endfor %}
                                     </td>
+                                    <td scope="row"><a href="{% url 'profile_detail' song.added_by.id %}">{{ song.added_by.username}}</a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
