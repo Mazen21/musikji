@@ -38,9 +38,11 @@
                     </li>
                 {% endif %}
         </form>
+        {% if user.profile.role == 'moderator' %}
         <li class="list-inline-item">
             <a class="btn btn-secondary" href="{% url 'archive:artist_edit' artist.id %}">Edit</a>
         </li>
+        {% endif %}
         </ul>
     </div>
     <div class="row">

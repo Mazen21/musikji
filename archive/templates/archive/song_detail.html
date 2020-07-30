@@ -39,9 +39,11 @@
                     </li>
                 {% endif %}
         </form>
-        <li class="list-inline-item">
-            <a class="btn btn-secondary" href="{% url 'archive:song_edit' song.id %}">Edit</a>
-        </li>
+        {% if user.profile.role == 'moderator' %}
+            <li class="list-inline-item">
+                <a class="btn btn-secondary" href="{% url 'archive:song_edit' song.id %}">Edit</a>
+            </li>
+        {% endif %}
         </ul>
     </div>
         <div class="row musikjilink">
@@ -165,6 +167,7 @@
                 </div>
             {% endfor %}
             </br>
+            {% if user.is_authenticated %}
                 <div>
                     <form method='POST'>
                         {% csrf_token %}
@@ -172,5 +175,6 @@
                         <button class="btn btn-outline-info" type="submit" name='add_comment'>Add Comment</button>
                     </form>
                 </div>
+            {% endif %}
     </div>
 {% endblock %}
