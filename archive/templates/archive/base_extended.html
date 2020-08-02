@@ -35,7 +35,7 @@
         {% load archive %}
         {% ft_artists as ft_artistss %}
         <h5 class="card-header">Featured Artists</h5>
-        <div class="card-body">
+        <div class="card-body musikjilink">
             <div class="row">
                 {% for ft_art in ft_artistss %}
                     <div class="col">
@@ -49,7 +49,7 @@
         {% load archive %}
         {% ft_songs as ft_songss %}
         <h5 class="card-header">Featured Songs</h5>
-        <div class="card-body">
+        <div class="card-body musikjilink">
             <div class="row">
                 {% for ft_song in ft_songss %}
                     <div class="col">
@@ -63,7 +63,7 @@
     <!-- ADS -->
     <div class="card my-4">
         <h5 class="card-header">Are you a music shop</h5>
-        <div class="card-body">
+        <div class="card-body musikjilink">
             Contact us to share your products with the community
             <a class="nav-link" href="{% url 'archive:contact' %}">Click here</a>
         </div>
