@@ -149,7 +149,7 @@ class Song(MusikjiStamp):
     music_form = models.ForeignKey(MusicForm, on_delete=models.SET_NULL,null=True,blank=True)
     rythm = models.ForeignKey(Rythm,on_delete=models.SET_NULL, null=True,blank=True)
     music_genre = models.ForeignKey(MusicGenre,on_delete=models.SET_NULL, null=True,blank=True)
-    date = models.PositiveIntegerField(default=current_year(), validators=[MinValueValidator(500), max_value_current_year])
+    date = models.PositiveIntegerField( validators=[max_value_current_year], null=True,blank=True)
     audio = models.TextField(null=True,blank=True)
     msc = models.TextField(blank=True, null=True)
     ytb = models.TextField(blank=True, null=True)

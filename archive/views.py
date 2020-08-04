@@ -448,7 +448,7 @@ def song_add(request):
                             link=f'http://localhost:8000/archive/song/{song.id}'
                             )
                 tk.save()
-            request.user.profile.points += 50
+            request.user.profile.points += 100
             request.user.profile.save()
             song.save()
             messages.success(request,f'Song added successfully!')
@@ -615,8 +615,8 @@ def score_download(request, score_id):
                 #increment number of downloads
                 score.downloads += 1
                 score.save()
-                if request.user.profile.points >= 10: 
-                    request.user.profile.points -= 10
+                if request.user.profile.points >= 1: 
+                    request.user.profile.points -= 1
                     request.user.profile.save()
                     return response
                 else:
